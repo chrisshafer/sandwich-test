@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sandwhich Test</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+    <link href="https://fonts.googleapis.com/css?family=Coiny|Open+Sans|Sigmar+One" rel="stylesheet">
+    <script>
+        function onImageChange(input) {
+
+            if(input.files && input.files[0]){           
+                var fileReader = new FileReader();
+                fileReader.onload = function(event){  
+                   var sandwichImage = document.getElementById("sandwich-image")
+                   sandwichImage.setAttribute("src", event.target.result)
+                   sandwichImage.setAttribute("class", "loaded")
+                
+                    
+                   var sandwichUpload = document.getElementById("file-upload-btn")
+                   sandwichUpload.setAttribute("class", "hide")
+
+                   var sandwichOverlay = document.getElementById("sandwich-overlay")
+                   sandwichOverlay.setAttribute("class", "isasandwich-overlay show")
+                }
+                
+                fileReader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <style>
+        .hide{
+            display: none;
+        }
+        body{
+            font-family: 'Open Sans', sans-serif;
+            padding-top: 160px;
+        }
+        .isasandwich-overlay{
+            display: flex;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+        .isasandwich-overlay h1{
+            text-align: center;
+            vertical-align: middle;
+            margin: auto;
+            color: white;
+            font-family: 'Coiny', cursive;
+            font-size: 40px;
+            background:green;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 5px 15px rgba(0,0,0,0.07);
+            /* text-shadow: 2px 0 green, 0px 2px green, -2px 0 green, 0px -2px green; */
+            letter-spacing: 1px;
+            padding: 0px 12px 12px 12px;
+            border-radius: 3px;
+        }
+        .isasandwich-overlay:hover{
+            opacity: 0.0;
+        }
+        .isasandwich-overlay.hide{
+            display: none;
+        }
+        .isasandwich-overlay.show{
+            opacity: 1.0;
+        }
+        .center-container{
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+        }
+        .image-container{
+            display: block;
+            width: 400px;
+            margin: auto;
+            margin-top: 30px;
+            padding: 30px;
+            max-height: 500px;
+            transition: height 0.4s ease;
+            position: relative;
+        }
+        #sandwich-image{
+            max-width: 100%;
+            max-height: 400px;
+            box-shadow: 0 15px 35px rgba(50,50,60,0.3), 0 5px 15px rgba(0,0,0,0.07);
+            margin: auto;
+            display: block;
+        }
+        .title{
+            font-family: 'Coiny', cursive;
+            position: absolute;
+            top: -140px;
+            left: 0;
+            transform: rotate(-20deg);
+            font-size: 40px;
+            white-space: nowrap;
+        }
+        #file-upload-btn:focus{
+            outline: none;
+        }
+        #file-upload-btn{
+            font-family: 'Sigmar One', cursive;
+            position: relative;
+            overflow: hidden;
+            display: block;
+            margin: auto;
+            border: none;
+            width: 300px;
+            font-size: 20px;
+            background-color: black;
+            color: white;
+            padding: 15px 10px;
+            cursor: pointer;
+        }
+        #file-upload-input {
+            display: none;
+        }
+        .about{
+            font-size: 16px;
+            padding: 10px;
+        }
+        .left{
+            width: 390px;
+            float: left;
+        }
+        .left pre{
+            text-align: left;
+            padding: 10px;
+            margin-right: 20px;
+            color: black;
+            border: 2px solid black;
+            margin-bottom: 5px;
+        }
+        .right{
+            width: 390px;
+            font-size: 16px;
+            float: left;
+        }
+        #file-upload-btn.show{
+            opacity: 1.0;
+        }
+        #file-upload-btn.hide{
+            display: none;
+        }
+        .annotation{
+            font-size: 16px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="center-container">
+        <h4 class="title">Is It a Sandwich ?</h4>
+        <div class="image-container">
+            <button id="file-upload-btn" class="show" onclick="document.getElementById('file-upload-input').click();">Upload Image</button>
+            <img id="sandwich-image" class="" src="" alt=""/>
+            <div id="sandwich-overlay" class="isasandwich-overlay hide">
+                <h1>Yes</h1>
+            </div>
+        </div>
+        <input id="file-upload-input" type="file" accept="image/*" onchange="onImageChange(this)">
+        <div class="about">
+            <div class="left">
+                <h4>Proof</h4>
+                <pre>sandwich == something () anything<br>something () everything<br>anything == everything<br>everything == sandwhich</pre>
+                <span class="annotation">() = wraps</span>
+                <h4>Model</h4>
+                <pre>function isASandwich(x: Any){<br>   return true;<br>}</pre>
+            </div>
+            <div class="right">
+                <h4>Methodolgy</h4>
+                <p>
+                    Using cutting edge machine learning technology,
+                    we have developed a system to identify wether or not an image contains a sandwich.
+                </p>
+                <h4>Xtreme Training</h4>
+                <p>
+                    Using an extensive training set of many pictures of everything,
+                     and a test set of nothing (because everything is a sandwich). 
+                </p>
+                <h4>Results</h4>
+                <p>
+                    We have achieved the impossible, teaching a computer the fundamentals of sandwich logic, that everything is a sandwich. With a mind boggling R^2 of 1.0 and MAPE of 0%, we have the most accurate sandwich detection model on earth.
+                </p>
+            </div>
+        </div>
+    </div>
+  </body>
+</html>
