@@ -7,9 +7,12 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon">
     <link href="https://fonts.googleapis.com/css?family=Coiny|Open+Sans|Sigmar+One" rel="stylesheet">
     <script>
+        function isItASandwich(anything){
+            return true;
+        }
         function onImageChange(input) {
 
-            if(input.files && input.files[0]){           
+            if(input.files && input.files[0] && isItASandwich(input.files[0])){           
                 var fileReader = new FileReader();
                 fileReader.onload = function(event){  
                    var sandwichImage = document.getElementById("sandwich-image")
@@ -119,12 +122,15 @@
             display: none;
         }
         .about{
+            display: flex;
+            flex-direction: row;
+            position: relative;
             font-size: 16px;
             padding: 10px;
         }
         .left{
+            display: inline-block;
             width: 390px;
-            float: left;
         }
         .left pre{
             text-align: left;
@@ -135,9 +141,9 @@
             margin-bottom: 5px;
         }
         .right{
+            display: inline-block;
             width: 390px;
             font-size: 16px;
-            float: left;
         }
         #file-upload-btn.show{
             opacity: 1.0;
@@ -147,6 +153,20 @@
         }
         .annotation{
             font-size: 16px;
+        }
+        .footer{
+            margin-top: 40px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .github-link{
+            align-items: center;
+        }
+        .github-link img{
+            width: 40px;
+            height: 40px;
         }
     </style>
   </head>
@@ -184,6 +204,11 @@
                 <p>
                     We have achieved the impossible, teaching a computer the fundamentals of sandwich logic, that everything is a sandwich. With a mind boggling R^2 of 1.0 and MAPE of 0%, we have the most accurate sandwich detection model on earth.
                 </p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="github-link">
+                <a href="https://github.com/chrisshafer/sandwich-test"><img src="/GitHub-Mark-120px-plus.png"></a>
             </div>
         </div>
     </div>
